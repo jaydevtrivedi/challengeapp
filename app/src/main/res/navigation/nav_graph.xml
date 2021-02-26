@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/primaryScreen">
+
+    <fragment
+        android:id="@+id/primaryScreen"
+        android:name="com.companyname.challengeapp.ui.PrimaryScreen.PrimaryScreen"
+        android:label="primary_screen_fragment"
+        tools:layout="@layout/primary_screen_fragment" >
+        <action
+            android:id="@+id/action_primaryScreen_to_secondaryFragment"
+            app:destination="@id/secondaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondaryFragment"
+        android:name="com.companyname.challengeapp.ui.SecondaryScreen.SecondaryFragment"
+        android:label="secondary_fragment"
+        tools:layout="@layout/secondary_fragment" />
+</navigation>
