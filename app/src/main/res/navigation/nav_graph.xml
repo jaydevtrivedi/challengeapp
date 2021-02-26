@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondaryFragment"
-        android:name="com.companyname.challengeapp.ui.SecondaryScreen.SecondaryFragment"
+        android:name="com.companyname.challengeapp.ui.SecondaryScreen.SecondaryScreen"
         android:label="secondary_fragment"
         tools:layout="@layout/secondary_fragment" />
 </navigation>
