@@ -1,6 +1,8 @@
 package com.companyname.challengeapp.data.remote
 
 import com.companyname.challengeapp.CoroutineTestRule
+import com.companyname.challengeapp.data.repository.FakeRemoteDataSource
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -13,7 +15,7 @@ class RemoteDataSourceTest{
     @get:Rule
     var coroutinesTestRule = CoroutineTestRule()
 
-    private var remoteDataSource: RemoteDataSource = RemoteDataSource()
+    private var remoteDataSource: RemoteDataSource = RemoteDataSource(DataServiceImplementation())
 
     @Test
     fun cinemaworlddata_isnotnull() {

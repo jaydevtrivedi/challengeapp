@@ -35,10 +35,11 @@ class PrimaryScreenTest {
     @Test
     fun recyclerview_isdisplayed_has11items() {
         val activityScenario = launch(MainActivity::class.java)
+        Thread.sleep(4000) // provide time to load data from the internet
         activityScenario.onActivity { activity ->
             // Disable animations in RecyclerView
             (activity.findViewById(R.id.movies_recycler_view) as RecyclerView).itemAnimator = null
-            assert((activity.findViewById(R.id.movies_recycler_view) as RecyclerView).adapter!!.itemCount == 11)
+            assert((activity.findViewById(R.id.movies_recycler_view) as RecyclerView).adapter!!.itemCount==11)
         }
         onView(withId(R.id.movies_recycler_view)).check(matches(ViewMatchers.isDisplayed()))
     }
