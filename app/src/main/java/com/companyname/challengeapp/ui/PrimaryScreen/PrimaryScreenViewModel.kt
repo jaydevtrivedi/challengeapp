@@ -2,11 +2,11 @@ package com.companyname.challengeapp.ui.PrimaryScreen
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.companyname.challengeapp.data.entities.BaseJson
 import com.companyname.challengeapp.data.repository.Repository
+import com.companyname.challengeapp.utils.MenuFilter
+import com.companyname.challengeapp.utils.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -17,16 +17,23 @@ class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Reposi
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    var baseData: MutableLiveData<BaseJson> = MutableLiveData()
+    var baseData: MutableLiveData<Resource> = MutableLiveData()
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 
-    fun getData(){
-        viewModelScope.launch {
-            baseData.value = repository.getData()
+    fun getData(filter: MenuFilter){
+        if(filter.equals(MenuFilter.CINEMA_WORLD)){
+            viewModelScope.launch {
+                baseData.value = repository.getCinemaWorldData()
+            }
+        } else {
+            viewModelScope.launch {
+                baseData.value = repository.getFilmWorldData()
+            }
         }
+
     }
 }

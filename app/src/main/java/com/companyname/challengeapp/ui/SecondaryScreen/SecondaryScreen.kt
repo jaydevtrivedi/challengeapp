@@ -7,23 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.companyname.challengeapp.R
+import com.companyname.challengeapp.databinding.PrimaryScreenFragmentBinding
+import com.companyname.challengeapp.databinding.SecondaryFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SecondaryScreen : Fragment() {
 
+    lateinit var binding: SecondaryFragmentBinding
     private val viewModel: SecondaryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.secondary_fragment, container, false)
+        binding = SecondaryFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.id.text = arguments?.getString("id")
     }
 
 }

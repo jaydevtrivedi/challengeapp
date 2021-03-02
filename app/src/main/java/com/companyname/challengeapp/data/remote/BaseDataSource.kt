@@ -1,17 +1,18 @@
 package com.companyname.challengeapp.data.remote
 
 
+import com.companyname.challengeapp.data.entities.BaseJson
 import com.companyname.challengeapp.utils.Resource
 import retrofit2.Response
 import timber.log.Timber
 
 abstract class BaseDataSource {
 
-    protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
+    suspend fun <T> getResult(call: suspend () -> Response<T>): Resource {
         try {
             val response = call()
             if (response.isSuccessful) {
-                val body = response.body()
+                val body = response.body() as BaseJson
                 if (body != null) return Resource.success(body)
             }
             return error(" ${response.code()} ${response.message()}")
@@ -20,9 +21,11 @@ abstract class BaseDataSource {
         }
     }
 
-    private fun <T> error(message: String): Resource<T> {
+    private fun error(message: String): Resource {
         Timber.d(message)
         return Resource.error("Network call has failed for a following reason: $message")
     }
 
+    abstract suspend fun getCinemaWorldData(): Resource
+    abstract suspend fun getFilmWorldData(): Resource
 }

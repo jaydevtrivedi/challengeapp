@@ -1,7 +1,9 @@
 package com.companyname.challengeapp.utils
 
+import com.companyname.challengeapp.data.entities.BaseJson
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+
+data class Resource(val status: Status, val data: BaseJson?, val message: String?) {
 
     enum class Status {
         SUCCESS,
@@ -10,15 +12,15 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
     }
 
     companion object {
-        fun <T> success(data: T): Resource<T> {
+        fun success(data: BaseJson?): Resource {
             return Resource(Status.SUCCESS, data, null)
         }
 
-        fun <T> error(message: String, data: T? = null): Resource<T> {
+        fun error(message: String, data: BaseJson? = null): Resource {
             return Resource(Status.ERROR, data, message)
         }
 
-        fun <T> loading(data: T? = null): Resource<T> {
+        fun loading(data: BaseJson? = null): Resource {
             return Resource(Status.LOADING, data, null)
         }
     }
