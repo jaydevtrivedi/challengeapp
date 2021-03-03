@@ -13,6 +13,14 @@ A Challenge app that loads information from [API](https://challenge.lexicondigit
  The app is based on MVVM architecture.
  Fragment<->ViewModel<->Repository(RemoteDataSource only)
  
+ The source code is in Kotlin using Anroid Studio
+ The UI doesnt exactly match the document as it requires parent image so have added a title and name
+ alongwith the recyclerview.  It can be modified into a grid adapter as and when required but have kept
+ things simple atm.
+ 
+ The streaming providers could be selected from the filter menu the details will be loaded according
+ to the selected provider.
+ 
  ## You should also take a look at
  * [Guide to app architecture](https://developer.android.com/jetpack/guide)
  * [Android architecture samples](https://github.com/android/architecture-samples)
