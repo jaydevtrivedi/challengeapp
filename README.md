@@ -16,7 +16,8 @@ A Challenge app that loads information from [API](https://challenge.lexicondigit
  The source code is in Kotlin using Anroid Studio
  The UI doesnt exactly match the document as it requires parent image so have added a title and name
  alongwith the recyclerview.  It can be modified into a grid adapter as and when required but have kept
- things simple atm.
+ things simple atm.  The same goes for styling it can be done in consideration with what the designers
+ wish to see.
  
  The streaming providers could be selected from the filter menu the details will be loaded according
  to the selected provider.
