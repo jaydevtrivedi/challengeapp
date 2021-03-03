@@ -12,7 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.companyname.challengeapp.data.entities.Movies
 import com.companyname.challengeapp.databinding.ItemrecyclerviewBinding
 
-class MovieListAdapter (private val listener: ItemClickListener) : RecyclerView.Adapter<EntitlementsViewHolder>() {
+class MovieListAdapter(private val listener: ItemClickListener) :
+    RecyclerView.Adapter<EntitlementsViewHolder>() {
 
     interface ItemClickListener {
         fun onClickedEntitlement(id: String)
@@ -27,16 +28,21 @@ class MovieListAdapter (private val listener: ItemClickListener) : RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntitlementsViewHolder {
-        val binding: ItemrecyclerviewBinding = ItemrecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemrecyclerviewBinding =
+            ItemrecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EntitlementsViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: EntitlementsViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: EntitlementsViewHolder, position: Int) =
+        holder.bind(items[position])
 }
 
-class EntitlementsViewHolder(private val itemBinding: ItemrecyclerviewBinding, private val listener: MovieListAdapter.ItemClickListener) : RecyclerView.ViewHolder(itemBinding.root),
+class EntitlementsViewHolder(
+    private val itemBinding: ItemrecyclerviewBinding,
+    private val listener: MovieListAdapter.ItemClickListener
+) : RecyclerView.ViewHolder(itemBinding.root),
     View.OnClickListener {
 
     private lateinit var item: Movies
@@ -54,7 +60,7 @@ class EntitlementsViewHolder(private val itemBinding: ItemrecyclerviewBinding, p
         itemBinding.movieName.text = item.Title
         Glide.with(itemBinding.root)
             .load(item.Poster)
-            .apply(RequestOptions.overrideOf(imageHeight,imageWidth))
+            .apply(RequestOptions.overrideOf(imageHeight, imageWidth))
             .into(itemBinding.image)
     }
 
