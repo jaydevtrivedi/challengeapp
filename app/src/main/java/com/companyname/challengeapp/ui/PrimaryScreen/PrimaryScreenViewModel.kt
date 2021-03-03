@@ -26,14 +26,8 @@ class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Reposi
     }
 
     fun getData(filter: MenuFilter) {
-        if (filter.equals(MenuFilter.CINEMA_WORLD)) {
-            viewModelScope.launch {
-                baseData.value = repository.getCinemaWorldData()
-            }
-        } else {
-            viewModelScope.launch {
-                baseData.value = repository.getFilmWorldData()
-            }
+        viewModelScope.launch {
+            baseData.value = repository.getData(filter.value)
         }
     }
 }

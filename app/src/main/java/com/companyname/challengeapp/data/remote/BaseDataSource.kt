@@ -40,7 +40,6 @@ abstract class BaseDataSource {
         return Resource.error("Network call has failed for the following reason:$message")
     }
 
-    abstract suspend fun getCinemaWorldData(): Resource
-    abstract suspend fun getFilmWorldData(): Resource
+    abstract suspend fun getData(filter: String): Resource
     abstract suspend fun getMovieData(filter: String, id: String): Resource
 }

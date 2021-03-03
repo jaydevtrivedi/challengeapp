@@ -10,20 +10,16 @@ import com.google.gson.reflect.TypeToken
 import io.mockk.mockk
 
 class FakeRemoteDataSource : RemoteDataSource(mockk()) {
-
     override
-    suspend fun getCinemaWorldData(): Resource {
+    suspend fun getData(filter: String): Resource {
         var gson = Gson()
         val baseJson = object : TypeToken<BaseJson?>() {}.type
-        val data: BaseJson = gson.fromJson(TestData.cinemaworld, baseJson)
-        return Resource.success(data)
-    }
 
-    override
-    suspend fun getFilmWorldData(): Resource {
-        var gson = Gson()
-        val baseJson = object : TypeToken<BaseJson?>() {}.type
-        val data: BaseJson = gson.fromJson(TestData.filmworld, baseJson)
+        var data: BaseJson = if (filter == "cinemaworld")
+            gson.fromJson(TestData.cinemaworld, baseJson)
+        else
+            gson.fromJson(TestData.filmworld, baseJson)
+
         return Resource.success(data)
     }
 

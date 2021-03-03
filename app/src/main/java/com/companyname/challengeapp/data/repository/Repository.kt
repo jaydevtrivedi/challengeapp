@@ -8,12 +8,8 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(@AppModule.BaseDataSourceRemote val remoteDataSource: BaseDataSource) {
 
-    suspend fun getCinemaWorldData(): Resource {
-        return (remoteDataSource as RemoteDataSource).getCinemaWorldData()
-    }
-
-    suspend fun getFilmWorldData(): Resource {
-        return (remoteDataSource as RemoteDataSource).getFilmWorldData()
+    suspend fun getData(filter: String): Resource {
+        return (remoteDataSource as RemoteDataSource).getData(filter)
     }
 
     suspend fun getMovieData(filter: String, id: String): Resource {

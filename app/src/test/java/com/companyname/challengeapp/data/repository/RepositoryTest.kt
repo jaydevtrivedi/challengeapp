@@ -17,7 +17,7 @@ class RemoteDataSourceTest {
     @Test
     fun cinemaworlddata_datanotempty() {
         runBlocking {
-            val resource = repository.getCinemaWorldData()
+            val resource = repository.getData("cinemaworld")
             assert(resource.data != null)
             assert(resource.data!!.Provider.isNotEmpty())
             assert(resource.data!!.Movies.isNotEmpty())
@@ -28,7 +28,7 @@ class RemoteDataSourceTest {
     @Test
     fun filmworlddata_datanotempty() {
         runBlocking {
-            val resource = repository.getFilmWorldData()
+            val resource = repository.getData("filmworld")
             assert(resource.data != null)
             assert(resource.data!!.Provider.isNotEmpty())
             assert(resource.data!!.Movies.isNotEmpty())
