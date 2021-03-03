@@ -12,7 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Repository) : ViewModel(), LifecycleObserver {
+class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Repository) : ViewModel(),
+    LifecycleObserver {
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -24,8 +25,8 @@ class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Reposi
         viewModelJob.cancel()
     }
 
-    fun getData(filter: MenuFilter){
-        if(filter.equals(MenuFilter.CINEMA_WORLD)){
+    fun getData(filter: MenuFilter) {
+        if (filter.equals(MenuFilter.CINEMA_WORLD)) {
             viewModelScope.launch {
                 baseData.value = repository.getCinemaWorldData()
             }

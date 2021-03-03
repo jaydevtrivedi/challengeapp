@@ -1,7 +1,6 @@
 package com.companyname.challengeapp.ui.SecondaryScreen
 
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.companyname.challengeapp.R
 import com.companyname.challengeapp.databinding.SecondaryFragmentBinding
 import com.companyname.challengeapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +59,7 @@ class SecondaryScreen : Fragment() {
                 }
 
                 Resource.Status.ERROR -> {
-                   showError(it.message)
+                    showError(it.message)
                 }
 
                 Resource.Status.LOADING ->
@@ -88,10 +86,10 @@ class SecondaryScreen : Fragment() {
         binding.movieprice.visibility = View.VISIBLE
     }
 
-    fun showError(message: String?){
+    fun showError(message: String?) {
         val defaultError = "Something went wrong! Please contact support."
         hideUIElements()
         binding.progressBar.visibility = View.GONE
-        binding.movieName.text = if(!message.isNullOrEmpty()) message else defaultError
+        binding.movieName.text = if (!message.isNullOrEmpty()) message else defaultError
     }
 }

@@ -14,7 +14,6 @@ import com.companyname.challengeapp.databinding.PrimaryScreenFragmentBinding
 import com.companyname.challengeapp.utils.MenuFilter
 import com.companyname.challengeapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class PrimaryScreen : Fragment(), MovieListAdapter.ItemClickListener {
@@ -42,11 +41,11 @@ class PrimaryScreen : Fragment(), MovieListAdapter.ItemClickListener {
     }
 
     fun setupObservers() {
-        viewModel.baseData.observe(viewLifecycleOwner, Observer { it:Resource ->
+        viewModel.baseData.observe(viewLifecycleOwner, Observer { it: Resource ->
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    if(it.data!=null){
+                    if (it.data != null) {
                         adapter.setItems(it.data.Movies)
                     }
                 }

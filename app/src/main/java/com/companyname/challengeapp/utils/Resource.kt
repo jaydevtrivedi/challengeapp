@@ -4,7 +4,12 @@ import com.companyname.challengeapp.data.entities.BaseJson
 import com.companyname.challengeapp.data.entities.Movie
 
 
-data class Resource(val status: Status, val data: BaseJson?, val message: String?, val movie: Movie?) {
+data class Resource(
+    val status: Status,
+    val data: BaseJson?,
+    val message: String?,
+    val movie: Movie?
+) {
 
     enum class Status {
         SUCCESS,
@@ -33,7 +38,7 @@ data class Resource(val status: Status, val data: BaseJson?, val message: String
 
         //  Error function is common
         fun error(message: String): Resource {
-            return Resource(Status.ERROR,null, message, null)
+            return Resource(Status.ERROR, null, message, null)
         }
     }
 }
