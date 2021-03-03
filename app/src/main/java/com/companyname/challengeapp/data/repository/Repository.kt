@@ -15,4 +15,8 @@ class Repository @Inject constructor(@AppModule.BaseDataSourceRemote val remoteD
     suspend fun getFilmWorldData() : Resource {
         return (remoteDataSource as RemoteDataSource).getFilmWorldData()
     }
+
+    suspend fun getMovieData(filter: String, id: String) : Resource {
+        return (remoteDataSource as RemoteDataSource).getMovieData(filter, id)
+    }
 }

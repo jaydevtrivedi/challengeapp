@@ -1,9 +1,9 @@
 package com.companyname.challengeapp.di
 
-import com.companyname.challengeapp.data.remote.BaseDataSource
 import com.companyname.challengeapp.data.remote.DataService
 import com.companyname.challengeapp.data.remote.HeaderInterceptor
 import com.companyname.challengeapp.data.remote.RemoteDataSource
+import com.companyname.challengeapp.data.remote.getLoggingInterceptor
 import com.companyname.challengeapp.data.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -20,10 +20,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 object AppModule {
+
     @Singleton
     @Provides
     fun provideOkHttpClient(interceptor: HeaderInterceptor): OkHttpClient =
-        OkHttpClient().newBuilder().addInterceptor(interceptor).build()
+        OkHttpClient().newBuilder().addInterceptor(interceptor)
+            .addInterceptor(getLoggingInterceptor()).build()
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
@@ -37,7 +39,8 @@ object AppModule {
         .build()
 
     @Provides
-    fun provideCharacterService(retrofit: Retrofit): DataService = retrofit.create(DataService::class.java)
+    fun provideCharacterService(retrofit: Retrofit): DataService =
+        retrofit.create(DataService::class.java)
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)

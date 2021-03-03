@@ -1,4 +1,4 @@
-package com.companyname.challengeapp.ui.PrimaryScreen
+package com.companyname.challengeapp.ui.SecondaryScreen
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LifecycleObserver
@@ -12,7 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Repository) : ViewModel(), LifecycleObserver {
+class SecondaryScreenViewModel @ViewModelInject constructor(val repository: Repository) :
+    ViewModel(), LifecycleObserver {
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -24,15 +25,16 @@ class PrimaryScreenViewModel @ViewModelInject constructor(val repository: Reposi
         viewModelJob.cancel()
     }
 
-    fun getData(filter: MenuFilter){
-        if(filter.equals(MenuFilter.CINEMA_WORLD)){
-            viewModelScope.launch {
-                baseData.value = repository.getCinemaWorldData()
-            }
-        } else {
-            viewModelScope.launch {
-                baseData.value = repository.getFilmWorldData()
-            }
+    fun getData(id: String) {
+        viewModelScope.launch {
+            baseData.value = repository.getMovieData(getProviderName(id), id)
         }
     }
+
+    fun getProviderName(id: String): String =
+        if (id.startsWith("cw")) {
+            MenuFilter.CINEMA_WORLD.value
+        } else {
+            MenuFilter.FILM_WORLD.value
+        }
 }
